@@ -7,20 +7,16 @@ import { useEffect, useState } from 'react';
 
 const App = () => {
   const [starships, setStarships] = useState([]);
+  const [search, setSearch] = useState ('');
 
+
+//V for starshipList
 useEffect(() => {
+        
   const dataFetch = async () => {
-    const data = await starshipService.index();
-      // while (index=0 index <= data.length; index++){
-      //   setStarships(data[index]);
-      // }
-    // setStarships({
-    //   name: starshipCard.name,
-    //   model: starshipCard.model,
-    //   class: starshipCard.starship_class,
-      
-    // })
-    console.log(data)
+  const data = await starshipService.index();
+  setStarships(data);
+  console.log(data);
   }
   dataFetch();
 }, []);
@@ -28,27 +24,22 @@ useEffect(() => {
 
 
 const handleInputChange = (e) => {
-  setStarships(e.target.value);
+  console.log(e.target.value);
+  setSearch(e.target.value);
+}
+
+const dataFetch = async () => {
+  console.log(dataFetch);
 }
 
   return (
     <>
     <h1>Star Wars API</h1>
-    <p> Search Term:
-      <input type='text' onChange={handleInputChange}/>
-      <button onClick={fetch}>Search</button>
-    </p>
+    <StarshipSearch handleInputChange={handleInputChange} />
     <p> Number of Results:</p>
     <section>
-      {starships.map((starship, index) => {
-        return (
-          <StarshipList
-          key={index}
-          />
-        )
+      <StarshipList dataFetch={dataFetch} starships={starships} />
       
-      })}
-   
     </section>
     //
     </>
