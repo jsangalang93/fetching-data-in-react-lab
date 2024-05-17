@@ -4,7 +4,7 @@ const StarshipSearch = (props) => {
 return (
 <p> Search Term:
 <input type='text' onChange={props.handleInputChange}/>
-<button onClick={fetch}>Search</button>
+<button onClick={props.searchInq}>Search</button>
 
 </p>
 )

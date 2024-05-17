@@ -26,19 +26,27 @@ useEffect(() => {
 const handleInputChange = (e) => {
   console.log(e.target.value);
   setSearch(e.target.value);
+  
 }
 
-const dataFetch = async () => {
-  console.log(dataFetch);
+const searchInq = async () => {
+  const URL = `https://swapi.dev/api/starships/?search=${search}`;
+    //todo use an array to iterate through the string to put a %20 in every space involved
+  const res = await fetch (URL);
+  console.log (URL);
+  const returnData = await res.json();
+  console.log(returnData);
 }
 
   return (
     <>
     <h1>Star Wars API</h1>
-    <StarshipSearch handleInputChange={handleInputChange} />
+    <StarshipSearch handleInputChange={handleInputChange} searchInq = {searchInq} />
     <p> Number of Results:</p>
     <section>
-      <StarshipList dataFetch={dataFetch} starships={starships} />
+      <starshipCard starships={starships} />
+      <StarshipList starships={starships} />
+
       
     </section>
     //
