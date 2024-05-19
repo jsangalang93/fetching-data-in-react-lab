@@ -1,7 +1,7 @@
 // src/App.jsx
 import StarshipSearch from './components/StarshipSearch.jsx';
 import StarshipList from './components/StarshipList.jsx';
-import starshipCard from './components/StarshipCard.jsx';
+import StarshipCard from './components/StarshipCard.jsx';
 import starshipService from './services/StarshipService.js';
 import { useEffect, useState } from 'react';
 
@@ -36,6 +36,7 @@ const searchInq = async () => {
   console.log (URL);
   const returnData = await res.json();
   console.log(returnData);
+  setStarships(returnData.results);
 }
 
   return (
@@ -43,13 +44,14 @@ const searchInq = async () => {
     <h1>Star Wars API</h1>
     <StarshipSearch handleInputChange={handleInputChange} searchInq = {searchInq} />
     <p> Number of Results:</p>
+    <p>{starships.length}</p>
     <section>
-      <starshipCard starships={starships} />
+      {/* <StarshipCard starships={starships} /> */}
       <StarshipList starships={starships} />
 
       
     </section>
-    //
+    
     </>
   );
 }

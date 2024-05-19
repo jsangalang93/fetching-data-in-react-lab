@@ -1,24 +1,26 @@
 const BASE_URL = 'https://swapi.dev/api/'
 import { useState } from 'react';
 
-const StarshipCard = () => {
+const StarshipCard = (props) => {
     return (
         <>
-        {props.starships.map((starship, index) => {
+       
             return (
-                <div key={index}>
-                    <h2>{starship.name}</h2>
-                    <p>Class: {starship.starship_class}</p>
-                    <p>Manufacturer: {starship.manufacturer}</p>
-                    <p>Model: {starship.model}</p>
+                <>
+                <div key={props.index}>
+                    <h2>{props.starship.name}</h2>
+                    <p>Class: {props.starship.starship_class}</p>
+                    <p>Manufacturer: {props.starship.manufacturer}</p>
+                    <p>Model: {props.starship.model}</p>
                 </div>
+                
+                
+                </>
             )
-
-        console.log(props.starships)})}
         </>
         
     )
   }
 
 
-export default {StarshipCard};
+export default StarshipCard;
